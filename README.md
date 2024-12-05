@@ -20,8 +20,9 @@ Contenedores y Orquestación:
 Docker: Contenerización para una implementación más flexible y escalable.
 Docker Compose: Orquestación de contenedores para gestionar el ciclo de vida de los servicios en el proyecto.
 
-Integrantes del Proyecto
-Jaime Flores
-Elvis Leyva
-Jerson Chambi
-Andree Flores
+Integrantes del Proyecto:
+
+- Jaime Flores  
+- Elvis Leyva  
+- Jerson Chambi  
+- Andree Flores
