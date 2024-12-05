@@ -1,0 +1,75 @@
+#EJECUTA EN POWERSHELL:
+
+# Construye las imágenes de Docker
+docker-compose build
+
+# Inicia los contenedores definidos en el archivo docker-compose
+docker-compose up   
+
+-------------------MYSQL---------------------------
+
+# EJECUTA EN POWERSHELL:
+# Copia el archivo SQL desde el sistema local al contenedor MySQL
+
+docker cp "C:\xampp\htdocs\Proyecto\Version_15.sql" softprint-mysql-1:/Version_15.sql
+
+# Accede al contenedor de MySQL
+docker exec -it softprint-mysql-1 bash
+
+# Inicia sesión en MySQL como root
+mysql -u root -p
+
+#PRESIONAR ENTER porque no se establecio contraseña
+
+# Ejecuta el archivo SQL en MySQL
+SOURCE /Version_15.sql;
+
+---------------------MONGODB------------------------------
+# EJECUTA EN POWERSHELL:
+# Accede al cliente de MongoDB en el contenedor
+docker exec -it softprint-mongodb-1 mongosh
+
+# ultimo (pega código de bdimprenta_mongodb.txt)
+------------------------SQL SERVER--------------------------
+
+docker cp "C:\xampp\htdocs\Proyecto\Version_15_sql.sql" softprint-sqlserver-1:/Version_15_sql.sql
+
+docker exec -it softprint-sqlserver-1 /opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P "Jkdevelopers24" -d master -C
+
+:r /Version_15_sql.sql
+
+#EJECUTAR PARA CONFIRMAR INSERCIONES
+
+use bdimprenta;
+go
+
+----------------------------REDIS---------------------------
+docker exec -it softprint-redis-1 redis-cli
+
+
+
+
+
+
+HMSET usuario:1 id_usuario 1 email "jf2021070309@virtual.upt.pe" pass "$2y$10$s25AKkF192XyRW.tEzj/OubiPWzNPVX7tubiS/TZ9BBM.wD5Y4HQm" tipo "cliente" estado "" perfil_completo "" cod_confirmacion "" f_creacion "2024-10-29 05:52:35"
+HMSET usuario:2 id_usuario 2 email "andresebast16@gmail.com" pass "$2y$10$s25AKkF192XyRW.tEzj/OubiPWzNPVX7tubiS/TZ9BBM.wD5Y4HQm" tipo "cliente" estado "activo" perfil_completo "" cod_confirmacion "310135" f_creacion "2024-10-31 18:11:30"
+HMSET usuario:3 id_usuario 3 email "flores.2003@gmail.com" pass "$2y$10$o4plXaPnFq1wSGZloReWmON5gQpqgFy9fkdkG7J9Sn/3fWG37oT3G" tipo "cliente" estado "activo" perfil_completo "" cod_confirmacion "405099" f_creacion "2024-10-31 18:18:56"
+HMSET usuario:4 id_usuario 4 email "elvisleyva49@gmail.com" pass "$2y$10$s/uZYslYXOXgGv.yC3CeeODMUV.5..w5yygx.oRT4l/cO1XucnUgK" tipo "diseñador" estado "activo" perfil_completo "" cod_confirmacion "402718" f_creacion "2024-11-25 10:02:12"
+HMSET usuario:5 id_usuario 5 email "chetochems2801@gmail.com" pass "$2y$10$sbNadtH7qGw4o7eRpdjxLuruQRtoVbVgViWEeudwcoTH38pvNuY1G" tipo "diseñador" estado "activo" perfil_completo "" cod_confirmacion "246794" f_creacion "2024-11-25 10:04:58"
+HMSET usuario:7 id_usuario 7 email "elvisleyva2801@gmail.com" pass "$2y$10$FLUPeuSJJ7L3MJr6qnQuU.U36lo4upZnNdO66fX0NJ4xhdYNKx/SO" tipo "admin" estado "activo" perfil_completo "" cod_confirmacion "713662" f_creacion "2024-11-28 10:06:19"
+HMSET usuario:8 id_usuario 8 email "showerflores056@gmail.com" pass "$2y$10$KVHsucxJRCJzHrgOoXlnb.rVA.mmrn.H0yqb2Kfli0HTD63Kt0asK" tipo "cliente" estado "activo" perfil_completo "" cod_confirmacion "929092" f_creacion "2024-11-28 13:44:42"
+HMSET usuario:9 id_usuario 9 email "jkdev38@gmail.com" pass "$2y$10$hrtW1hDXTkvGoTsJvEgdyOU0cWDxRhv2sa3RZHeplOyfsHYUmsIUC" tipo "cajero" estado "activo" perfil_completo "" cod_confirmacion "279374" f_creacion "2024-11-28 18:25:26"
+HMSET usuario:10 id_usuario 10 email "yoelflores.tacna.2016@gmail.com" pass "$2y$10$Ifinu7Ot5vSYjx5VlQlRF.3I08DB.dr5Y8ZD3YGJeIgOWICBXs/x2" tipo "cliente" estado "activo" perfil_completo "" cod_confirmacion "861948" f_creacion "2024-11-28 20:39:23"
+
+
+HMSET cliente:1 id_cliente 1 id_usuario 2 nombre "Andree Blast" apellido "Melendez" dni "76032957" celular "957084266" direccion "" cod_ubigeo ""
+HMSET cliente:2 id_cliente 2 id_usuario 3 nombre "Maria" apellido "Flores" dni "32424300" celular "981289891" direccion "" cod_ubigeo ""
+HMSET cliente:3 id_cliente 3 id_usuario 7 nombre "Elvis" apellido "Leyva" dni "73860728" celular "971899955" direccion "" cod_ubigeo ""
+HMSET cliente:4 id_cliente 4 id_usuario 8 nombre "Giacomo" apellido "Bocchio" dni "86566886" celular "929929599" direccion "" cod_ubigeo ""
+HMSET cliente:5 id_cliente 5 id_usuario 9 nombre "Jk" apellido "Developers" dni "72252165" celular "999992266" direccion "" cod_ubigeo ""
+HMSET cliente:6 id_cliente 6 id_usuario 10 nombre "Yoelito" apellido "Flores" dni "78985665" celular "984894844" direccion "" cod_ubigeo ""
+
+#"Enter"
+
+verificamos:
+HGETALL cliente:4

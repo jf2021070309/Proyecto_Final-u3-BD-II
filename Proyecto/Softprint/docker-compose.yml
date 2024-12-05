@@ -1,0 +1,59 @@
+services:
+  # Servicio para PHP y Apache
+  web:
+    build:
+      context: .
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+    networks:
+      - app-network
+    depends_on:
+      - mysql
+      - mongodb
+      - sqlserver
+      - redis  # Añadido Redis como dependencia
+
+  # Servicio para MySQL
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"   # Permite conexión sin contraseña para root
+      MYSQL_DATABASE: bdimprenta          # Base de datos a crear
+    ports:
+      - "3306:3306"
+    networks:
+      - app-network
+
+  # Servicio para MongoDB
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    networks:
+      - app-network
+
+  # Servicio para SQL Server
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Jkdevelopers24  # Contraseña para el usuario 'sa' de SQL Server (usuario por defecto)
+      - MSSQL_PID=Express  # Instalar la versión Express de SQL Server
+    ports:
+      - "1433:1433"  # Puerto por defecto de SQL Server
+    networks:
+      - app-network
+
+  # Servicio para Redis
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"  # Puerto por defecto de Redis
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

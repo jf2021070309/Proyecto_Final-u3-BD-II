@@ -1,0 +1,124 @@
+// Crear base de datos
+use bdimprenta;
+
+// Crear colección `cliente` y cargar documentos
+db.createCollection("cliente");
+db.cliente.insertMany([
+  { "_id": 1, "id_usuario": 2, "nombre": "Andree Blast", "apellido": "Melendez", "dni": "76032957", "celular": "957084266", "direccion": "", "cod_ubigeo": "230110" },
+  { "_id": 2, "id_usuario": 3, "nombre": "Maria", "apellido": "Flores", "dni": "32424300", "celular": "981289891", "direccion": "", "cod_ubigeo": "230108" },
+  { "_id": 3, "id_usuario": 7, "nombre": "Elvis", "apellido": "Leyva", "dni": "73860728", "celular": "971899955", "direccion": null, "cod_ubigeo": "230108" },
+  { "_id": 4, "id_usuario": 8, "nombre": "Giacomo", "apellido": "Bocchio", "dni": "86566886", "celular": "929929599", "direccion": "", "cod_ubigeo": "110302" },
+  { "_id": 5, "id_usuario": 9, "nombre": "Jk", "apellido": "Developers", "dni": "72252165", "celular": "999992266", "direccion": "", "cod_ubigeo": "180206" },
+  { "_id": 6, "id_usuario": 10, "nombre": "Yoelito", "apellido": "Flores", "dni": "78985665", "celular": "984894844", "direccion": "", "cod_ubigeo": "070105" }
+]);
+
+// Crear colección `empleado` y cargar documentos
+db.createCollection("empleado");
+db.empleado.insertMany([
+  { "_id": 1, "id_usuario": 2, "nombre": "Andrés", "apellido": "Sebastián", "celular": "912345678", "cargo": "Diseñador", "sueldo": 2500, "fecha_contratacion": new Date("2024-10-31") },
+  { "_id": 2, "id_usuario": 4, "nombre": "Elvis", "apellido": "Leyva", "celular": "987654321", "cargo": "Diseñador", "sueldo": 1500, "fecha_contratacion": new Date("2023-01-15") },
+  { "_id": 3, "id_usuario": 5, "nombre": "Chems", "apellido": "Chems", "celular": "912345678", "cargo": "Diseñador", "sueldo": 1200, "fecha_contratacion": new Date("2022-11-20") }
+]);
+
+// Crear colección `cita` y cargar documentos
+db.createCollection("cita");
+db.cita.insertMany([
+  { "_id": 1, "fecha": new Date("2024-11-05"), "horario": "programada", "estado": "programada", "descripcion": "Reunión para discutir el diseño del proyecto", "f_creacion": new Date("2024-10-31T19:25:05"), "id_cliente": 1, "id_empleado": 1 },
+  { "_id": 13, "fecha": new Date("2024-12-02"), "horario": "", "estado": "programada", "descripcion": "cita 7", "f_creacion": new Date("2024-12-02T15:36:55"), "id_cliente": 6, "id_empleado": 1 },
+  { "_id": 14, "fecha": new Date("2024-12-02"), "horario": "", "estado": "programada", "descripcion": "cita 8", "f_creacion": new Date("2024-12-02T15:39:57"), "id_cliente": 1, "id_empleado": 1 },
+  { "_id": 16, "fecha": new Date("2024-12-02"), "horario": "", "estado": "programada", "descripcion": "cita 9", "f_creacion": new Date("2024-12-02T15:40:31"), "id_cliente": 4, "id_empleado": 1 },
+  { "_id": 19, "fecha": new Date("2024-12-02"), "horario": "", "estado": "programada", "descripcion": "citaaaa", "f_creacion": new Date("2024-12-02T16:22:33"), "id_cliente": 1, "id_empleado": 1 },
+  { "_id": 21, "fecha": new Date("2024-12-02"), "horario": "", "estado": "programada", "descripcion": "gaa", "f_creacion": new Date("2024-12-02T16:41:00"), "id_cliente": 4, "id_empleado": 1 },
+  { "_id": 23, "fecha": new Date("2024-12-02"), "horario": "", "estado": "programada", "descripcion": "nueva cita", "f_creacion": new Date("2024-12-02T16:43:17"), "id_cliente": 4, "id_empleado": 1 },
+  { "_id": 24, "fecha": new Date("2024-12-02"), "horario": "12:15", "estado": "programada", "descripcion": "cita pa blast", "f_creacion": new Date("2024-12-02T17:06:27"), "id_cliente": 1, "id_empleado": 1 }
+]);
+
+// Crear colección `detalle_pedido` y cargar documentos
+db.createCollection("detalle_pedido");
+db.detalle_pedido.insertMany([
+  { "id_pedido": 1, "id_producto": 2, "descripcion": "Millar de volantes publicitarios", "altura": 29.7, "ancho": 21, "cantidad": 1, "id_insumo": 5, "url_img": null },
+  { "id_pedido": 2, "id_producto": 3, "descripcion": "Stickers adhesivos personalizados", "altura": 10, "ancho": 10, "cantidad": 2, "id_insumo": 3, "url_img": null },
+  { "id_pedido": 2, "id_producto": 7, "descripcion": "Pines personalizados (100 unidades)", "altura": null, "ancho": null, "cantidad": 1, "id_insumo": 6, "url_img": null },
+  { "id_pedido": 3, "id_producto": 1, "descripcion": "Tarjetas de presentación estándar", "altura": 9, "ancho": 5, "cantidad": 1, "id_insumo": 2, "url_img": null },
+  { "id_pedido": 4, "id_producto": 6, "descripcion": "Roll Screen con impresión personalizada", "altura": 100, "ancho": 85, "cantidad": 1, "id_insumo": 6, "url_img": null },
+  { "id_pedido": 5, "id_producto": 4, "descripcion": "Banner delgado (8 onzas)", "altura": 200, "ancho": 150, "cantidad": 2, "id_insumo": 7, "url_img": null },
+  { "id_pedido": 6, "id_producto": 5, "descripcion": "Lona publicitaria personalizada", "altura": 200, "ancho": 200, "cantidad": 1, "id_insumo": 3, "url_img": null },
+  { "id_pedido": 7, "id_producto": 1, "descripcion": "Tarjeta Mate Millar con nombre Blast", "altura": 5.5, "ancho": 9, "cantidad": 1, "id_insumo": 16, "url_img": null },
+  { "id_pedido": 8, "id_producto": 6, "descripcion": "Estructura + Impresión (1m x 0.85m) x 4 unidades", "altura": 100, "ancho": 0.85, "cantidad": 4, "id_insumo": 14, "url_img": null },
+  { "id_pedido": 9, "id_producto": 5, "descripcion": "Lona x 5 unidades", "altura": 200, "ancho": 150, "cantidad": 1, "id_insumo": 15, "url_img": "https://dalleprodsec.blob.core.windows.net/private/images/27d54e8e-92c2-433b-8fd7-803a5da62c5e/generated_00.png?se=2024-11-29T20%3A15%3A30Z&sig=yZPuM%2FOgk69Ytg36DrBvncBK0Qvgz3X%2BmWWqlZFfZw4%3D&ske=2024-12-05T20%3A02%3A29Z&skoid=e52d5ed7-0657-4f62-bc12-7e5dbb260a96&sks=b&skt=2024-11-28T20%3A02%3A29Z&sktid=33e01921-4d64-4f8c-a055-5bdaffd5e33d&skv=2020-10-02&sp=r&spr=https&sr=b&sv=2020-10-02" }
+]);
+// Crear colección `ingreso` y cargar documentos
+db.createCollection("ingreso");
+db.ingreso.insertMany([
+  { "id_insumo": 1, "fecha": new Date("2024-12-01"), "cantidad": 100, "costo_unitario": 50, "costo_total": 5000, "observaciones": "Ingreso de papelería", "id_proveedor": 1 },
+  { "id_insumo": 2, "fecha": new Date("2024-12-02"), "cantidad": 200, "costo_unitario": 30, "costo_total": 6000, "observaciones": "Ingreso de tinta", "id_proveedor": 2 },
+  { "id_insumo": 3, "fecha": new Date("2024-12-02"), "cantidad": 150, "costo_unitario": 80, "costo_total": 12000, "observaciones": "Ingreso de carteles", "id_proveedor": 3 },
+  { "id_insumo": 4, "fecha": new Date("2024-12-03"), "cantidad": 50, "costo_unitario": 100, "costo_total": 5000, "observaciones": "Ingreso de tintas especiales", "id_proveedor": 4 }
+]);
+
+// Crear colección `insumo` y cargar documentos
+db.createCollection("insumo");
+db.insumo.insertMany([
+  { "id_insumo": 1, "descripcion": "Papel A4", "stock": 1000, "precio_compra": 50 },
+  { "id_insumo": 2, "descripcion": "Tinta negra", "stock": 500, "precio_compra": 30 },
+  { "id_insumo": 3, "descripcion": "Carteles de PVC", "stock": 200, "precio_compra": 80 },
+  { "id_insumo": 4, "descripcion": "Tinta especial", "stock": 150, "precio_compra": 100 }
+]);
+
+// Crear colección `pedido` y cargar documentos
+db.createCollection("pedido");
+db.pedido.insertMany([
+  { "id_pedido": 1, "fecha": new Date("2024-12-01"), "estado": "en proceso", "id_cliente": 1 },
+  { "id_pedido": 2, "fecha": new Date("2024-12-02"), "estado": "completado", "id_cliente": 2 },
+  { "id_pedido": 3, "fecha": new Date("2024-12-03"), "estado": "en espera", "id_cliente": 3 },
+  { "id_pedido": 4, "fecha": new Date("2024-12-04"), "estado": "en proceso", "id_cliente": 4 }
+]);
+
+// Crear colección `producto` y cargar documentos
+db.createCollection("producto");
+db.producto.insertMany([
+  { "id_producto": 1, "descripcion": "Tarjetas de presentación", "precio_unitario": 2.5 },
+  { "id_producto": 2, "descripcion": "Volantes publicitarios", "precio_unitario": 1.5 },
+  { "id_producto": 3, "descripcion": "Stickers personalizados", "precio_unitario": 0.5 },
+  { "id_producto": 4, "descripcion": "Lonas publicitarias", "precio_unitario": 15 },
+  { "id_producto": 5, "descripcion": "Pines personalizados", "precio_unitario": 0.8 },
+  { "id_producto": 6, "descripcion": "Roll Screen", "precio_unitario": 50 },
+  { "id_producto": 7, "descripcion": "Banners publicitarios", "precio_unitario": 20 }
+]);
+
+// Crear colección `proveedor` y cargar documentos
+db.createCollection("proveedor");
+db.proveedor.insertMany([
+  { "id_proveedor": 1, "nombre": "Proveedor 1", "ruc": "20123456789", "celular": "999888777", "email": "proveedor1@empresa.com", "direccion": "Av. Principal 123" },
+  { "id_proveedor": 2, "nombre": "Proveedor 2", "ruc": "20234567890", "celular": "987654321", "email": "proveedor2@empresa.com", "direccion": "Av. Secundaria 456" },
+  { "id_proveedor": 3, "nombre": "Proveedor 3", "ruc": "20345678901", "celular": "965432109", "email": "proveedor3@empresa.com", "direccion": "Av. Tercera 789" },
+  { "id_proveedor": 4, "nombre": "Proveedor 4", "ruc": "20456789012", "celular": "912345678", "email": "proveedor4@empresa.com", "direccion": "Av. Cuarta 321" }
+]);
+
+// Crear colección `ubigeo` y cargar documentos
+db.createCollection("ubigeo");
+db.ubigeo.insertMany([
+  { "cod_ubigeo": "23", "descripcion": "TACNA", "cod_ubigeo_sup": "" },
+  { "cod_ubigeo": "2301", "descripcion": "TACNA", "cod_ubigeo_sup": "23" },
+  { "cod_ubigeo": "230101", "descripcion": "TACNA", "cod_ubigeo_sup": "2301" },
+  { "cod_ubigeo": "230102", "descripcion": "ALTO DE LA ALIANZA", "cod_ubigeo_sup": "2301" },
+  { "cod_ubigeo": "230103", "descripcion": "CALANA", "cod_ubigeo_sup": "2301" },
+  { "cod_ubigeo": "230104", "descripcion": "CIUDAD NUEVA", "cod_ubigeo_sup": "2301" },
+  { "cod_ubigeo": "230105", "descripcion": "INCLAN", "cod_ubigeo_sup": "2301" },
+  { "cod_ubigeo": "230106", "descripcion": "PACHIA", "cod_ubigeo_sup": "2301" },
+  { "cod_ubigeo": "230107", "descripcion": "PALCA", "cod_ubigeo_sup": "2301" },
+  { "cod_ubigeo": "230108", "descripcion": "POCOLLAY", "cod_ubigeo_sup": "2301" },
+  { "cod_ubigeo": "230109", "descripcion": "SAMA", "cod_ubigeo_sup": "2301" },
+  { "cod_ubigeo": "230110", "descripcion": "GREGORIO ALBARRACIN", "cod_ubigeo_sup": "2301" }
+]);
+db.usuario.insertMany([
+  { "_id": 1, "email": "jf2021070309@virtual.upt.pe", "pass": "$2y$10$s25AKkF192XyRW.tEzj/OubiPWzNPVX7tubiS/TZ9BBM.wD5Y4HQm", "tipo": "cliente", "estado": "", "perfil_completo": null, "cod_confirmacion": null, "f_creacion": new Date("2024-10-29T05:52:35") },
+  { "_id": 2, "email": "andresebast16@gmail.com", "pass": "$2y$10$s25AKkF192XyRW.tEzj/OubiPWzNPVX7tubiS/TZ9BBM.wD5Y4HQm", "tipo": "cliente", "estado": "activo", "perfil_completo": null, "cod_confirmacion": "310135", "f_creacion": new Date("2024-10-31T18:11:30") },
+  { "_id": 3, "email": "flores.2003@gmail.com", "pass": "$2y$10$o4plXaPnFq1wSGZloReWmON5gQpqgFy9fkdkG7J9Sn/3fWG37oT3G", "tipo": "cliente", "estado": "activo", "perfil_completo": null, "cod_confirmacion": "405099", "f_creacion": new Date("2024-10-31T18:18:56") },
+  { "_id": 4, "email": "elvisleyva49@gmail.com", "pass": "$2y$10$s/uZYslYXOXgGv.yC3CeeODMUV.5..w5yygx.oRT4l/cO1XucnUgK", "tipo": "diseñador", "estado": "activo", "perfil_completo": null, "cod_confirmacion": "402718", "f_creacion": new Date("2024-11-25T10:02:12") },
+  { "_id": 5, "email": "chetochems2801@gmail.com", "pass": "$2y$10$sbNadtH7qGw4o7eRpdjxLuruQRtoVbVgViWEeudwcoTH38pvNuY1G", "tipo": "diseñador", "estado": "activo", "perfil_completo": null, "cod_confirmacion": "246794", "f_creacion": new Date("2024-11-25T10:04:58") },
+  { "_id": 7, "email": "elvisleyva2801@gmail.com", "pass": "$2y$10$FLUPeuSJJ7L3MJr6qnQuU.U36lo4upZnNdO66fX0NJ4xhdYNKx/SO", "tipo": "admin", "estado": "activo", "perfil_completo": null, "cod_confirmacion": "713662", "f_creacion": new Date("2024-11-28T10:06:19") },
+  { "_id": 8, "email": "showerflores056@gmail.com", "pass": "$2y$10$KVHsucxJRCJzHrgOoXlnb.rVA.mmrn.H0yqb2Kfli0HTD63Kt0asK", "tipo": "cliente", "estado": "activo", "perfil_completo": null, "cod_confirmacion": "929092", "f_creacion": new Date("2024-11-28T13:44:42") },
+  { "_id": 9, "email": "jkdev38@gmai|l.com", "pass": "$2y$10$hrtW1hDXTkvGoTsJvEgdyOU0cWDxRhv2sa3RZHeplOyfsHYUmsIUC", "tipo": "cajero", "estado": "activo", "perfil_completo": null, "cod_confirmacion": "279374", "f_creacion": new Date("2024-11-28T18:25:26") },
+  { "_id": 10, "email": "yoelflores.tacna.2016@gmail.com", "pass": "$2y$10$Ifinu7Ot5vSYjx5VlQlRF.3I08DB.dr5Y8ZD3YGJeIgOWICBXs/x2", "tipo": "cliente", "estado": "activo", "perfil_completo": null, "cod_confirmacion": "861948", "f_creacion": new Date("2024-11-28T20:39:23") }
+]);
